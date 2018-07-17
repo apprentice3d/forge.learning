@@ -2,7 +2,7 @@
 
 To translate a file we just need one endpoint.
 
-## ModelDerivative.js
+## modelderivative.js
 
 Create a `/server/modelderivative.js` file with the following content:
 
@@ -43,6 +43,8 @@ router.post('/api/forge/modelderivative/jobs', jsonParser, function (req, res) {
             .then(function (data) {
                 res.status(200).end();
             }).catch(function (e) {
+                console.log('Error at Model Derivative job:');
+                console.log(e);
                 res.status(500).json({ error: e.error.body })
             });
     });
@@ -57,4 +59,4 @@ To summarize, at this point your **NodeJS** project should be like:
 
 ![](_media/nodejs/vs_code_allfiles.png)
 
-Next: [Show on Viewer](viewer/)
+Next: [Show on Viewer](viewer/2legged/)
