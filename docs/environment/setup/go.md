@@ -48,12 +48,10 @@ import (
 	"log"
 	"os"
 
-	"forgesample/server"
+	"local/forgesample/server"
 )
 
-const (
-	PORT = ":3000"
-)
+var port string
 
 func main() {
 
@@ -64,8 +62,12 @@ func main() {
 		log.Fatal("The FORGE_CLIENT_ID and FORGE_CLIENT_SECRET env vars are not set. \nExiting ...")
 	}
 
-	log.Println("Starting server on port ", PORT)
-	server.StartServer(PORT, clientID, clientSecret)
+	if port = os.Getenv("PORT"); len(port) == 0 {
+		port = "3000"
+	}
+
+	log.Println("Starting server on port ", port)
+	server.StartServer(":"+port, clientID, clientSecret)
 }
 ```
 The purpose of this file is to setup Forge credentials and start the server.    
